@@ -1,0 +1,177 @@
+/* ----------GERAL---------- */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  font-size: 62.5%;
+  --primary-color: hsl(170, 100%, 26%);
+  --primary-light-color: hsl(148, 23%, 89%);
+  --headline: hsl(210, 11%, 15%);
+  --paragraph: hsl(210, 9%, 31%);
+  --numbers-background:  hsl(39, 100%,97%);
+  --menu-height: 7.2rem;
+
+}
+
+/* ----------CONTEÚDO---------- */
+
+body {
+  font-family: 'DM Sans';
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.contentatt {
+  width: 37.5rem;
+
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+nav{
+  padding: 1.6rem 2.4rem;
+  height: var(--menu-height);
+  background-color: var(--primary-light-color);
+
+  display: flex;
+
+/* 
+  Para garantir fixado no meio, torna-se 'fixo', cria um margin para 50% no meio da tela e depois translada 50% do tamanho do objeto!*/
+  position: fixed;
+  top:0;
+  left:50%;
+  transform: translateX(-50%);
+}
+
+nav.scroll{
+  background: var(--primary-color);
+  width: 100vw;
+}
+
+nav.scroll svg:nth-child(1) path{
+  fill: white;
+}
+
+nav.scroll svg:nth-child(2) path{
+  stroke: white;
+}
+
+nav .contentatt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header {
+  margin-top: calc(4.1rem + var(--menu-height));
+}
+
+/* before content in header */
+header::before {
+  content: '';
+  background-color: var(--primary-light-color);
+  height: calc(108rem + var(--menu-height));
+  width: 100vw;
+  
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+}
+
+h4 {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-bottom: 1.6rem;
+  margin-top: 8.1rem;
+}
+
+h1 {
+  font-size: 3.4rem;
+  color: var(--headline);
+  line-height: 130%;
+  margin-bottom: 2.4rem;
+}
+
+p {
+  font-size: 1.8rem;
+  color: var(--paragraph);
+  line-height: 150%;
+  font-weight: 400;
+
+  margin-bottom: 3.2rem;
+}
+
+button {
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 700;
+  
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4rem;
+  height: 6.2rem;
+  width: 26.3rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 6rem;
+
+}
+
+header img{
+  width: 26.4rem;
+  display: block;
+  margin-inline: auto;
+  object-position: 0 .5rem;
+}
+
+.numbers {
+  width: 32.7rem;
+  height: 47rem;
+  padding-block: 4rem;
+
+  margin-inline: auto;
+
+
+  background-color: var(--numbers-background);
+
+  border: 1px solid #DCE9E2;
+  border-radius: .6rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6rem;
+  
+}
+
+/* .numbers div {
+  margin: 6rem 8rem;
+} */
+
+h3 {
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 130%;
+  color: var(--headline);
+
+  margin-bottom: .4rem;
+}
+
+.numbers div p {
+  color: var(--primary-color);
+  margin: 0;
+}
