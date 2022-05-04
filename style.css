@@ -1,21 +1,31 @@
 /* ----------GERAL---------- */
 * {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-:root{
+:root {
   font-size: 62.5%;
   --primary-color: hsl(170, 100%, 26%);
   --primary-light-color: hsl(148, 23%, 89%);
   --headline: hsl(210, 11%, 15%);
   --paragraph: hsl(210, 9%, 31%);
-  --numbers-background:  hsl(39, 100%,97%);
+  --numbers-background: hsl(39, 100%, 97%);
   --menu-height: 7.2rem;
+}
 
+ul {
+  list-style: none;
 }
 
 /* ----------CONTEÚDO---------- */
+html,
+body {
+  /* pra não dar B.O. e aparecer umas barras de rolagem minusculas na tela */
+  width: 100%;
+  height: 100%;
+}
 
 body {
   font-family: 'DM Sans';
@@ -28,42 +38,169 @@ body {
 
   margin-left: auto;
   margin-right: auto;
-
 }
 
-nav{
+nav {
   padding: 1.6rem 2.4rem;
   height: var(--menu-height);
   background-color: var(--primary-light-color);
 
   display: flex;
 
-/* 
+  /* 
   Para garantir fixado no meio, torna-se 'fixo', cria um margin para 50% no meio da tela e depois translada 50% do tamanho do objeto!*/
   position: fixed;
-  top:0;
-  left:50%;
+  top: 0;
+  left: 50%;
   transform: translateX(-50%);
 }
 
-nav.scroll{
+nav.scroll {
   background: var(--primary-color);
   width: 100vw;
 }
 
-nav.scroll svg:nth-child(1) path{
+nav.scroll svg:nth-child(1) path {
   fill: white;
 }
 
-nav.scroll svg:nth-child(2) path{
+nav.scroll .open-menu svg path {
   stroke: white;
 }
+nav.scroll .open-menu {
+  background-color: var(--primary-color);
+  border: none;
+}
+nav .open-menu {
+  background-color: var(--primary-light-color);
+  border: none;
+}
+
 
 nav .contentatt {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+/* -----CLOSE MENU------ */
+body .menu,
+.close-menu {
+  visibility: hidden;
+}
+
+body .open-menu {
+  visibility: visible;
+}
+
+/* -----OPENED MENU------ */
+body.opened-menu {
+  /* hide scroll bars */
+  overflow: hidden;
+}
+
+/* body.opened-menu > * --> erase all the children */
+body.opened-menu > :not(nav){
+  display: none;
+}
+
+/* See opened menu, X button and logo*/
+body.opened-menu .menu,
+body.opened-menu .close-menu {
+  visibility: visible;
+}
+
+body.opened-menu .close-menu {
+  position: relative;
+  z-index: 10;
+  background-color: var(--primary-color);
+  border: none;
+}
+
+body.opened-menu .logo {
+  position: relative;
+  z-index: 10;
+}
+
+body.opened-menu .logo svg path{
+  fill: white;
+}
+
+/* Hide the 'open-menu' button */
+body.opened-menu .open-menu {
+  visibility: hidden;
+}
+
+body.opened-menu .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background-color: var(--primary-color);
+  width: 100vw;
+  height: 100vh;
+}
+
+body.opened-menu nav {
+  position: relative;
+}
+
+body.opened-menu ul:nth-child(1) {
+  margin-top: calc(6rem + var(--menu-height));
+
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+
+  /* 'text-decoration' and 'color' doesn't work in 'ul' properties */
+  /* text-decoration: none;
+  color: var(--numbers-background); */
+  
+}
+
+body.opened-menu ul li a {
+  text-decoration: none;
+  color: var(--numbers-background);
+}
+
+body.opened-menu .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-inline: auto;
+  margin-top: 4.8rem;
+
+  width: 27.4rem;
+  height: 5.5rem;
+  border-radius: 4rem;
+
+  background-color: white;
+
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.social-links {
+  margin-top: 8rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 3.4rem;
+}
+
+/* -----content in landing page----- */
 
 header {
   margin-top: calc(4.1rem + var(--menu-height));
@@ -74,14 +211,13 @@ header::before {
   content: '';
   background-color: var(--primary-light-color);
   height: calc(108rem + var(--menu-height));
-  width: 100vw;
-  
+  width: 100%;
+
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   z-index: -1;
-
 }
 
 h4 {
@@ -107,18 +243,18 @@ p {
   margin-bottom: 3.2rem;
 }
 
-button {
+header button {
   color: white;
   text-transform: uppercase;
   font-size: 1.4rem;
   font-weight: 700;
-  
+
   background-color: var(--primary-color);
   border: none;
   border-radius: 4rem;
   height: 6.2rem;
   width: 26.3rem;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,14 +263,13 @@ button {
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 6rem;
-
 }
 
-header img{
+header img {
   width: 26.4rem;
   display: block;
   margin-inline: auto;
-  object-position: 0 .5rem;
+  object-position: 0 0.5rem;
 }
 
 .numbers {
@@ -144,18 +279,16 @@ header img{
 
   margin-inline: auto;
 
-
   background-color: var(--numbers-background);
 
-  border: 1px solid #DCE9E2;
-  border-radius: .6rem;
+  border: 1px solid #dce9e2;
+  border-radius: 0.6rem;
   box-sizing: border-box;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 6rem;
-  
 }
 
 /* .numbers div {
@@ -168,7 +301,7 @@ h3 {
   line-height: 130%;
   color: var(--headline);
 
-  margin-bottom: .4rem;
+  margin-bottom: 0.4rem;
 }
 
 .numbers div p {
