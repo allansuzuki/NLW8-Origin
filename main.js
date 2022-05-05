@@ -16,3 +16,16 @@ function onclickclosemenu() {
 function onclickopenmenu() {
   body.classList.add('opened-menu')
 }
+
+ScrollReveal({
+  origin:'top',
+  distance:'30px',
+  duration:700
+}).reveal(`
+#home,
+#home .img,
+#home .stat,
+#services,
+#services .header,
+#services .card`);
+
