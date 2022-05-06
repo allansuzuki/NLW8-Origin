@@ -3,13 +3,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'DM Sans';
 }
 
 :root {
   font-size: 62.5%;
-  --primary-color: hsl(170, 100%, 26%);
-  --primary-light-color: hsl(152, 23%, 89%);
-  --bg-light: hsl(180, 14%, 97%);
+  --hue: 290;
+  --primary-color: hsl(var(--hue), 100%, 26%);
+  --hover-button: hsl(var(--hue), 100%, 14%);
+  --primary-light-color: hsl(calc(var(--hue) + 170 - 148), 23%, 89%);
+  --bg-light: hsl(calc(var(--hue) + 170 - 180), 14%, 97%);
   --headline: hsl(210, 11%, 15%);
   --paragraph: hsl(210, 9%, 31%);
   --numbers-background: hsl(39, 100%, 97%);
@@ -44,8 +47,62 @@ h4 {
 p {
   font-weight: 400;
   font-size: 1.6rem;
-  line-height: 150%;
+  line-height: 150%; /*2.4rem*/
   color: var(--paragraph);
+}
+
+.wabutton {
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4rem;
+  padding: 1.6rem 3.2rem;
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 6rem;
+
+  transition: background 200ms;
+}
+
+.wabutton:hover {
+  background-color: var(--hover-button);
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 3.4rem;
+}
+
+/* nav .logo svg :nth-last-child(-n+4)   - iterate to the last for elements*/
+/*nav .logo svg path[fill*='00856F']     - find all the paths with fill equals to 00856F */
+nav .logo svg path[fill*='00856F'],
+#goToTop svg circle {  
+  fill: var(--primary-color);
+}
+
+#services .card svg circle {
+  fill: var(--primary-light-color);
+}
+
+nav .open-menu svg path,
+#services .card svg path,
+#contact .content svg path {
+  stroke: var(--primary-color);
 }
 
 /* ----------CONTEÚDO---------- */
@@ -142,7 +199,7 @@ body.opened-menu {
   overflow: hidden;
 }
 
-/* body.opened-menu > * --> erase all the children */
+/* body.opened-menu > * --> hide all the children */
 body.opened-menu > :not(nav) {
   visibility: hidden;
 }
@@ -161,7 +218,6 @@ body.opened-menu .close-menu {
   z-index: 10;
   background-color: transparent; /*or background:none*/
   border: none;
-  padding-right: 1.3rem; /*oqq houve??*/
 }
 
 body.opened-menu .logo {
@@ -213,18 +269,8 @@ body.opened-menu ul li a {
   color: var(--numbers-background);
 }
 
-body.opened-menu .button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-inline: auto;
+body.opened-menu .wabutton {
   margin-top: 4.8rem;
-
-  width: 27.4rem;
-  height: 5.5rem;
-  border-radius: 4rem;
-
   background-color: white;
 
   font-size: 1.8rem;
@@ -233,22 +279,25 @@ body.opened-menu .button {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--primary-color);
+
+  transition: background 200ms;
 }
 
-.social-links {
+body.opened-menu .wabutton:hover {
+  background-color: var(--primary-color);
+  color: white;
+  outline: 1px solid white;
+}
+
+.menu .social-links {
   margin-top: 8rem;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  gap: 3.4rem;
 }
 
 /* -----content in landing page----- */
 
 #home {
   padding-top: calc(4.1rem + var(--menu-height));
+  padding-bottom: 0;
 }
 
 /* before content in header */
@@ -286,28 +335,6 @@ body.opened-menu .button {
   margin-bottom: 3.2rem;
 }
 
-#home button {
-  color: white;
-  text-transform: uppercase;
-  font-size: 1.4rem;
-  font-weight: 700;
-
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: 4rem;
-  height: 6.2rem;
-  width: 26.3rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.6rem;
-
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 6rem;
-}
-
 #home img {
   width: 26.4rem;
   display: block;
@@ -338,7 +365,7 @@ body.opened-menu .button {
   margin: 6rem 8rem;
 } */
 
-header h3 {
+#home h3 {
   font-size: 4.8rem;
   font-weight: 700;
   line-height: 130%;
@@ -419,4 +446,90 @@ header h3 {
   width: 32.7rem;
   height: 28.2rem;
   border-radius: 1rem;
+
+  outline: 1px solid var(--primary-light-color);
+}
+
+/* ------CONTACT PAGE------ */
+#contact {
+  background-color: white;
+}
+#contact h2 {
+  text-align: left;
+  margin-bottom: 3.2rem;
+}
+
+#contact .content {
+  margin-bottom: 3.2rem;
+}
+
+#contact p {
+  text-align: left;
+}
+
+#contact svg {
+  margin-right: 0.8rem;
+  vertical-align: middle;
+}
+
+
+#contact p:nth-child(1) {
+  margin-bottom: 1.6rem;
+}
+
+#contact .wabutton {
+  /* align-items: left; */
+  /* justify-content: left; */
+  /* gap: 1.6rem; */
+
+  /* margin-right: 0; */
+  margin-left: 0;
+  margin-bottom: 6rem;
+}
+
+#contact img {
+  width: 100%;
+}
+
+/* ------FOOTER PAGE------ */
+#footer {
+  padding-block: 6rem;
+  background-color: var(--primary-color);
+  text-align: left;
+}
+
+#footer .logo svg {
+  height: 3.1rem;
+  width: 23.6rem;
+}
+
+#footer .logo svg path{
+  fill: white
+}
+
+#footer .content p {
+  margin-top: 2.4rem;
+  margin-bottom: 3.2rem;
+  line-height: 2;
+  color: white;
+}
+
+#footer .social-links {
+  justify-content: left;
+}
+
+/* ------ GOTO TOP BUTTON ------ */
+#goToTop {
+  position: fixed;
+  bottom: 1rem;
+  right: 10vw;
+  transition: transform 200ms cubic-bezier(.47,1.64,.41,.8);
+  transform: translateY(200%);
+  visibility: hidden;
+
+}
+
+#goToTop.scroll {
+  transform: translateY(0%);
+  visibility: visible;
 }

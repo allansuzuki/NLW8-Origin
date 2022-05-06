@@ -1,3 +1,6 @@
+window.addEventListener('scroll',onscroll)
+onscroll()
+
 function onscroll() {
   // if (scrollY>0) {
   //   nav.classList.add('scroll')
@@ -5,8 +8,17 @@ function onscroll() {
   // else {
   //   nav.classList.remove('scroll')
   // }
+  showNav()
+  showGotoTop()
+}
 
+function showNav() {  
   scrollY > 0 ? nav.classList.add('scroll') : nav.classList.remove('scroll')
+
+}
+
+function showGotoTop() {
+  scrollY > 400 ? goToTop.classList.add('scroll') : goToTop.classList.remove('scroll')
 }
 
 function onclickclosemenu() {
@@ -27,5 +39,9 @@ ScrollReveal({
 #home .stat,
 #services,
 #services .header,
-#services .card`);
+#services .card,
+#about .header,
+#about .content,
+#about img,
+#contact`);
 
