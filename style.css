@@ -8,7 +8,7 @@
 
 :root {
   font-size: 62.5%;
-  --hue: 290;
+  --hue: 170;
   --primary-color: hsl(var(--hue), 100%, 26%);
   --hover-button: hsl(var(--hue), 100%, 14%);
   --primary-light-color: hsl(calc(var(--hue) + 170 - 148), 23%, 89%);
@@ -17,6 +17,10 @@
   --paragraph: hsl(210, 9%, 31%);
   --numbers-background: hsl(39, 100%, 97%);
   --menu-height: 7.2rem;
+}
+
+a {
+  text-decoration: none;
 }
 
 ul {
@@ -91,7 +95,7 @@ p {
 /* nav .logo svg :nth-last-child(-n+4)   - iterate to the last for elements*/
 /*nav .logo svg path[fill*='00856F']     - find all the paths with fill equals to 00856F */
 nav .logo svg path[fill*='00856F'],
-#goToTop svg circle {  
+#goToTop svg circle {
   fill: var(--primary-color);
 }
 
@@ -128,7 +132,7 @@ body {
 }
 
 .contentatt {
-  width: 37.5rem;
+  width: min(50rem, 100%);
 
   margin-inline: auto;
   padding-inline: 2.4rem;
@@ -172,6 +176,11 @@ nav.scroll .open-menu svg path {
 nav .open-menu {
   background-color: transparent;
   border: none;
+}
+
+nav .menu,
+nav .close-menu {
+  position: fixed;
 }
 
 nav button {
@@ -336,14 +345,14 @@ body.opened-menu .wabutton:hover {
 }
 
 #home img {
-  width: 26.4rem;
+  width: 26.3rem;
   display: block;
   margin-inline: auto;
   object-position: 0 0.5rem;
 }
 
 #home .numbers {
-  width: 32.7rem;
+  width: 100%;
   /* height: 47rem; */
   padding-block: 4rem;
 
@@ -443,8 +452,7 @@ body.opened-menu .wabutton:hover {
 }
 
 #about img {
-  width: 32.7rem;
-  height: 28.2rem;
+  width: 100%;
   border-radius: 1rem;
 
   outline: 1px solid var(--primary-light-color);
@@ -471,7 +479,6 @@ body.opened-menu .wabutton:hover {
   margin-right: 0.8rem;
   vertical-align: middle;
 }
-
 
 #contact p:nth-child(1) {
   margin-bottom: 1.6rem;
@@ -503,8 +510,8 @@ body.opened-menu .wabutton:hover {
   width: 23.6rem;
 }
 
-#footer .logo svg path{
-  fill: white
+#footer .logo svg path {
+  fill: white;
 }
 
 #footer .content p {
@@ -523,13 +530,206 @@ body.opened-menu .wabutton:hover {
   position: fixed;
   bottom: 1rem;
   right: 10vw;
-  transition: transform 200ms cubic-bezier(.47,1.64,.41,.8);
+  transition: transform 200ms cubic-bezier(0.47, 1.64, 0.41, 0.8);
   transform: translateY(200%);
   visibility: hidden;
-
 }
 
 #goToTop.scroll {
   transform: translateY(0%);
   visibility: visible;
+}
+
+/* ------ MEDIA RULE ------ */
+@media (min-width: 1024px) {
+  .contentatt {
+    width: min(100%, 1120px);
+    display: grid; /*work with objects around*/
+  }
+
+  /* --------------------------- NAV ------ */
+  /* ------ RESET ------ */
+  nav#nav .contentatt * {
+    margin: 0;
+    padding: 0;
+    margin: 0;
+    visibility: initial;
+    display: initial;
+    opacity: initial;
+    flex-direction: initial;
+    position: initial;
+    font-size: initial;
+    transform: initial;
+    color: initial;
+    background-color: initial;
+    font-weight: initial;
+    filter: initial;
+  }
+
+  nav#nav .open-menu,
+  nav#nav .close-menu,
+  nav#nav .social-links {
+    display: none;
+  }
+  /* ------CONFIGURE NAV ------*/
+  nav#nav .menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    width: 58%;
+  }
+
+  nav#nav .menu ul:nth-child(1) {
+    display: flex;
+    gap: 3.2rem;
+  }
+
+  nav#nav .menu ul li a {
+    color: var(--primary-color);
+    opacity: 0.7;
+
+    transition: opacity .5s;
+  }
+
+  nav#nav .menu ul li a:hover {
+    /* font-weight: 700; */
+    opacity: 1;
+  }
+
+  nav#nav .menu ul li a::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 0;
+    background-color: var(--primary-color);
+
+    position: relative;
+    bottom: -2rem;
+    left: -.5rem;
+
+    transition: width .2s;
+  }
+  
+  nav#nav .menu ul li a:hover::after {
+    opacity: 1;
+    width: 100%;
+    padding-inline: .5rem;
+  }
+
+  nav#nav .wabutton {
+    display: flex;
+    padding: 1rem 2.4rem;
+    width: fit-content;
+
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+
+    border: 1px solid var(--primary-color);
+    border-radius: 4rem;
+    color: var(--primary-color);
+  }
+  
+  nav#nav .wabutton:hover{
+    background-color: var(--primary-color);
+    color: white;
+    border-color: none;
+  }
+
+  /* ------CONFIGURE NAV on scroll------*/
+
+  nav#nav.scroll .menu ul li a {
+    color: var(--primary-light-color);
+    opacity: 0.6;
+  }
+
+  nav#nav.scroll .menu ul li a:hover {
+    font-weight: 700;
+    opacity: 1;
+  }
+
+  nav#nav.scroll .wabutton {
+    border-color: white;
+    color: white;
+  }
+
+  nav#nav.scroll .menu ul li a::after {
+    background-color: white;
+  }
+
+  nav#nav.scroll .menu ul li a:hover::after {
+    opacity: 1;
+    color: white;
+  }
+
+  nav#nav.scroll .wabutton:hover {
+    background-color: var(--hover-button);
+  }
+
+  /* --------------------------- HOME PAGE ------ */
+
+  #home .contentatt {
+    grid-template-columns: 60.5rem 1fr;
+    grid-template-areas: 
+    'A B'
+    'C C';
+    margin-inline: 12.3rem;
+  }
+
+  #home h1 {
+    font-size: 5.2rem;
+  }
+
+  #home .lcol {
+    grid-area: A;  /*dont know why, but must be without '' */
+    text-align: left;
+  }
+
+  #home .wabutton{
+    margin-inline: 0;
+  }
+
+  #home .rcol {
+    grid-area: B;
+  }
+
+  #home img {
+    width: 42rem;
+  }
+
+  #home .numbers {
+    grid-area: C;
+  }
+
+  #home .numbers{
+    padding: 6rem 12rem;
+    flex-direction: row;
+    gap: 0;
+    /* justify-content: space-around; */
+  }
+
+  /*didn't work =/
+  #home .stat:nth-last-child(-n+2):before{
+    content: '';
+    display: flex;
+    flex-direction: row;
+    width: 8rem;
+    opacity: .5;
+    transform: rotate(90deg);
+    border: 1px solid var(--primary-color);
+  }*/
+
+  /*means - apply the 'stat' when have a stat before */
+  #home .stat + .stat {
+    border-left: 1px solid var(--primary-color);
+    opacity: .5;
+  }
+
+  #home .stat {
+    flex: 1;
+  }
+
+  
+
 }
